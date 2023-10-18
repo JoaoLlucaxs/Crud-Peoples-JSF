@@ -1,6 +1,9 @@
 package sistema.com.bean;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -15,8 +18,13 @@ public class PessoaBean {
 	
 	private DAOGeneric<Pessoa> daoPessoa=new DAOGeneric<Pessoa>();
 	
+	private List<Pessoa> pessoas=new ArrayList<Pessoa>();
+	
 	public String salvar() {
 		pessoa=daoPessoa.merge(pessoa);
+		
+		carregarPessoas(); // fazer o carremento da tabela na tela após salvar
+		
 		return "";
 	}
 	
@@ -28,10 +36,18 @@ public class PessoaBean {
 	public String delete() {
 		daoPessoa.removerPorId(pessoa);
 		
+		carregarPessoas();	
+		
 		pessoa=new Pessoa(); //limpando campos após remoção
 		
 		return "";
 	}
+	
+	public void carregarPessoas() {
+			pessoas=daoPessoa.getListEntity(Pessoa.class);
+	}
+	
+	// ================= GETTERS AND SETTERS=============
 
 	public Pessoa getPessoa() {
 		return pessoa;
@@ -48,6 +64,11 @@ public class PessoaBean {
 	public void setDaoPessoa(DAOGeneric<Pessoa> daoPessoa) {
 		this.daoPessoa = daoPessoa;
 	}
-	
+
+	// Apenas o getter para lista, não faz sentido settar um list
+	public List<Pessoa> getPessoas() {
+		return pessoas;
+	}
+
 	
 }

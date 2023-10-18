@@ -1,37 +1,65 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
 <h:head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Página Inicial</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<h:outputStylesheet library="style" name="estilocss.css"/>
+	<title>CADASTROS</title>
 </h:head>
 
 <h:body>
-	<h:form id="frm">
+	<h:form id="frm" style="display:block; justify-content:center; text-align:center; padding:5px;">
 		<h1>CRUD Cadastro de Pessoa</h1>
 		
-		<h:outputLabel value="Id"/>
-		<h:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
-		
-		<h:outputLabel value="Nome"/>
-		<h:inputText value="#{pessoaBean.pessoa.nome}"/>
+		<div style="margin-bottom:10px; border:1px solid gray; padding:15px;">
+		<p:outputLabel value="Id : "/>
+		<p:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
 		<br/>
 		
-		<h:outputLabel value="Sobrenome"/>
-		<h:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
+		<p:outputLabel value="Nome : "/>
+		<p:inputText value="#{pessoaBean.pessoa.nome}"/>
 		<br/>
 		
-		<h:outputLabel value="Idade"/>
-		<h:inputText value="#{pessoaBean.pessoa.idade}"/>
+		<p:outputLabel value="Sobrenome : "/>
+		<p:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
 		<br/>
 		
-		<h:commandButton value="Limpar Campo" action="#{pessoaBean.novo()}"/>
+		<p:outputLabel value="Idade : "/>
+		<p:inputText value="#{pessoaBean.pessoa.idade}"/>
+		<br/>
+		</div>
 		
-		<h:commandButton value="Salvar" action="#{pessoaBean.salvar()}"/>
+		<p:commandButton value="Limpar Campo" action="#{pessoaBean.novo()}" style="background-color:yellow;"/>
 		
-		<h:commandButton value="Remover" action="#{pessoaBean.delete()}"/>
+		<p:commandButton value="Salvar" action="#{pessoaBean.salvar()}" style="background-color:green;"/>
+		
+		<p:commandButton value="Remover" action="#{pessoaBean.delete()}" style="background-color:red;"/>
+		
+		
 	</h:form>
+	
+	<p:dataTable value="#{pessoaBean.pessoas}" var="p">
+	
+    	<p:column headerText="Id">
+        	<h:outputText value="#{p.id}"/>
+    	</p:column>
+ 
+    	<p:column headerText="Nome">
+        	<h:outputText value="#{p.nome}" />
+    	</p:column>
+ 
+    	<p:column headerText="Sobrenome">
+        	<h:outputText value="#{p.sobrenome}" />
+    	</p:column>
+ 
+    	<p:column headerText="Idade">
+        	<h:outputText value="#{p.idade}" />
+    	</p:column>
+	</p:dataTable>
+	
 	
 </h:body>
 </html>
