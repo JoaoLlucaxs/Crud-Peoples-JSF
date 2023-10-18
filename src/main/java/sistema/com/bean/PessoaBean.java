@@ -24,6 +24,14 @@ public class PessoaBean {
 		pessoa=new Pessoa();
 		return "";
 	}
+	
+	public String delete() {
+		daoPessoa.removerPorId(pessoa);
+		
+		pessoa=new Pessoa(); //limpando campos após remoção
+		
+		return "";
+	}
 
 	public Pessoa getPessoa() {
 		return pessoa;
