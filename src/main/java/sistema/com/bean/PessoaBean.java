@@ -1,18 +1,24 @@
 package sistema.com.bean;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import Exceptions.ExceptionClass;
 import sistema.com.dao.DAOGeneric;
 import sistema.com.model.Pessoa;
 
 @ViewScoped
-@ManagedBean
-public class PessoaBean {
+@ManagedBean(name="pessoaBean")
+public class PessoaBean implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+	
 	
 	private Pessoa pessoa=new Pessoa();
 	
@@ -20,33 +26,42 @@ public class PessoaBean {
 	
 	private List<Pessoa> pessoas=new ArrayList<Pessoa>();
 	
-	public String salvar() {
-		pessoa=daoPessoa.merge(pessoa);
+	@PostConstruct
+	public void salvar() {
+		try {
+		daoPessoa.merge(pessoa);
 		
 		carregarPessoas(); // fazer o carremento da tabela na tela após salvar
 		
-		return "";
+		
+		}catch (ExceptionClass e) {
+			e.printStackTrace();
+		}
 	}
 	
-	public String novo() { // limpando os campos
+	public void limpa() { // limpando os campos
 		pessoa=new Pessoa();
-		return "";
 	}
 	
-	public String delete() {
+	public void delete() {
+		try {
 		daoPessoa.removerPorId(pessoa);
 		
 		carregarPessoas();	
-		
+
 		pessoa=new Pessoa(); //limpando campos após remoção
 		
-		return "";
+		
+		}catch (ExceptionClass e) {
+			e.printStackTrace();
+		}
 	}
 	
+	@PostConstruct
 	public void carregarPessoas() {
 			pessoas=daoPessoa.getListEntity(Pessoa.class);
+			
 	}
-	
 	// ================= GETTERS AND SETTERS=============
 
 	public Pessoa getPessoa() {
@@ -69,6 +84,5 @@ public class PessoaBean {
 	public List<Pessoa> getPessoas() {
 		return pessoas;
 	}
-
 	
 }

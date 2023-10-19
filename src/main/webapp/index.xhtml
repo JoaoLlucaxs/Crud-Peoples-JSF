@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 	
 <h:head>
@@ -11,10 +12,13 @@
 </h:head>
 
 <h:body>
-	<h:form id="frm" style="display:block; justify-content:center; text-align:center; padding:5px;">
+	
+	<h:form id="frm" style="display:block;text-align:center; ">
+	<p:messages autoUpdate="true"/>
+	
 		<h1>CRUD Cadastro de Pessoa</h1>
 		
-		<div style="margin-bottom:10px; border:1px solid gray; padding:15px;">
+		
 		<p:outputLabel value="Id : "/>
 		<p:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
 		<br/>
@@ -30,36 +34,47 @@
 		<p:outputLabel value="Idade : "/>
 		<p:inputText value="#{pessoaBean.pessoa.idade}"/>
 		<br/>
-		</div>
 		
-		<p:commandButton value="Limpar Campo" action="#{pessoaBean.novo()}" style="background-color:yellow;"/>
-		
-		<p:commandButton value="Salvar" action="#{pessoaBean.salvar()}" style="background-color:green;"/>
+		<p:commandButton value="Salvar"  ajax="false" action="#{pessoaBean.salvar()}" style="background-color:green;"/>
 		
 		<p:commandButton value="Remover" action="#{pessoaBean.delete()}" style="background-color:red;"/>
 		
 		
-	</h:form>
+		<p:dataTable var="p" value="#{pessoaBean.pessoas}" style="margin-top:10px;">
 	
-	<p:dataTable value="#{pessoaBean.pessoas}" var="p">
-	
-    	<p:column headerText="Id">
+    	<p:column headerText="ID">
         	<h:outputText value="#{p.id}"/>
     	</p:column>
  
-    	<p:column headerText="Nome">
+    	<p:column headerText="NOME">
         	<h:outputText value="#{p.nome}" />
     	</p:column>
  
-    	<p:column headerText="Sobrenome">
+    	<p:column headerText="SOBRENOME">
         	<h:outputText value="#{p.sobrenome}" />
     	</p:column>
  
-    	<p:column headerText="Idade">
+    	<p:column headerText="IDADE">
         	<h:outputText value="#{p.idade}" />
     	</p:column>
+    	
+    	
+    	<p:column headerText="Edite">
+    		<p:commandButton value="EDITAR" action="#{pessoaBean.salvar()}" icon="ui-icon-pencil" update="@form" process="@this">
+    			<f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
+    		</p:commandButton>
+    	</p:column>
+    	
+    	<p:column headerText="Exclua">
+    		<p:commandButton value="EXCLUIR" action="#{pessoaBean.delete()}" icon="ui-icon-trash" update="@form" process="@this">
+    			<f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
+    		</p:commandButton>
+    	</p:column>
+    	
 	</p:dataTable>
 	
+	</h:form>
 	
+
 </h:body>
 </html>

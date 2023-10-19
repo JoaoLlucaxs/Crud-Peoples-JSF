@@ -1,5 +1,6 @@
 package sistema.com.dao;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -7,21 +8,14 @@ import javax.persistence.EntityTransaction;
 
 import sistema.com.jpaUtil.JPAUtil;
 
-public class DAOGeneric<A> {
+public class DAOGeneric<A> implements Serializable{
 	
-	/*public void salvar(A entidade) {
-		EntityManager entitymanager=JPAUtil.getEntityManager();
-		EntityTransaction transaction=entitymanager.getTransaction();
-		transaction.begin();
-		
-		entitymanager.persist(entidade);
-		
-		transaction.commit();
-		
-		entitymanager.close();
-		
-	}*/
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	public A merge(A entidade) {
 		EntityManager entitymanager=JPAUtil.getEntityManager();
 		EntityTransaction transaction=entitymanager.getTransaction();
@@ -53,19 +47,21 @@ public class DAOGeneric<A> {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<A> getListEntity(Class<A> entidade){
 		EntityManager entitymanager=JPAUtil.getEntityManager();
 		// Startando a transaão
 		EntityTransaction transaction=entitymanager.getTransaction();
 		transaction.begin();
 		
-		List<A> retornarLista=entitymanager.createQuery(" from " + entidade.getName())
+		@SuppressWarnings("unchecked")
+		List<A> retornarLista=entitymanager.createQuery("from " + entidade.getName())
 				.getResultList();
+		
 		
 		transaction.commit();
 		entitymanager.close();
 		
 		return retornarLista;
 	}
+	
 }
