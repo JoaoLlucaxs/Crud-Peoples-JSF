@@ -1,3 +1,4 @@
-# CRUD de Pessoas utilizando JSF - > Hibernate -> Postgres - > Primefaces 
+# Preview trabalhando com JSF e Postgres 9.5
 
-![Captura da Web_18-10-2023_164657_localhost](https://github.com/JoaoLlucaxs/Sistema_Pessoa_Em_JSF/assets/92184255/a254186d-9860-479f-8fcd-42a92992a770)
+![Captura da Web_19-10-2023_9547_localhost](https://github.com/JoaoLlucaxs/Sistema_Pessoa_Em_JSF/assets/92184255/09eabab1-27ad-4070-b89d-c94264c975bf)
+
