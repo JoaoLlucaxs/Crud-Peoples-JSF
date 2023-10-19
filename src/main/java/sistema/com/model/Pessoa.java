@@ -1,15 +1,12 @@
 package sistema.com.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Objects;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 @Entity
 public class Pessoa implements Serializable{
@@ -22,8 +19,6 @@ public class Pessoa implements Serializable{
 	private String sobrenome;
 	private Integer idade;
 	
-	@Temporal(TemporalType.DATE)
-	private Date dataNascimento;
 	
 	public Pessoa() {}
 
@@ -57,14 +52,6 @@ public class Pessoa implements Serializable{
 
 	public void setIdade(Integer idade) {
 		this.idade = idade;
-	}
-
-	public Date getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
 	}
 
 	@Override

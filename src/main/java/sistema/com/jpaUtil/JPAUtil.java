@@ -20,6 +20,7 @@ public class JPAUtil {
 		return factory.createEntityManager();
 	}
 	
+	// pegando o id do objeto para fazer verificações e buscar
 	public static Object getPrimaryKey(Object entidade ) {
 		return factory.getPersistenceUnitUtil().getIdentifier(entidade);
 	}

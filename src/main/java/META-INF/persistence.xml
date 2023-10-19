@@ -3,6 +3,7 @@
 
 	<persistence-unit name="pos-jsf">
 		<class>sistema.com.model.Pessoa</class>
+		
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/jsf_pessoa"/>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
@@ -13,6 +14,7 @@
 			<property name="hibernate.show_sql" value="true"/>
 			<property name="hibernate.format_sql" value="true"/>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL9Dialect"/>
+			
 		</properties>
 	</persistence-unit>
 </persistence>

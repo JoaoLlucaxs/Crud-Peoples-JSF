@@ -13,7 +13,7 @@ import Exceptions.ExceptionClass;
 import sistema.com.dao.DAOGeneric;
 import sistema.com.model.Pessoa;
 
-@ViewScoped
+@ViewScoped  // Aqui não estou utilizando CDI para injeção pois estou fazendo mais manualmente
 @ManagedBean(name="pessoaBean")
 public class PessoaBean implements Serializable{
 	
@@ -24,7 +24,7 @@ public class PessoaBean implements Serializable{
 	
 	private DAOGeneric<Pessoa> daoPessoa=new DAOGeneric<Pessoa>();
 	
-	private List<Pessoa> pessoas=new ArrayList<Pessoa>();
+	private List<Pessoa> pessoas=new ArrayList<Pessoa>();  // listando na tabela
 	
 	@PostConstruct
 	public void salvar() {

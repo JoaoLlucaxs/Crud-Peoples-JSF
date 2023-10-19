@@ -15,7 +15,8 @@ public class DAOGeneric<A> implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 
-
+	
+	// Com merge podemos tanto salvar quanto atualizar
 	public A merge(A entidade) {
 		EntityManager entitymanager=JPAUtil.getEntityManager();
 		EntityTransaction transaction=entitymanager.getTransaction();
