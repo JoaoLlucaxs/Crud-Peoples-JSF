@@ -9,10 +9,6 @@ import javax.persistence.EntityTransaction;
 import sistema.com.jpaUtil.JPAUtil;
 
 public class DAOGeneric<A> implements Serializable{
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	

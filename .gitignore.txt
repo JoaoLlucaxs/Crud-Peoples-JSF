@@ -1,0 +1,6 @@
+.metadata
+.git
+target
+.settings
+
+.gitignore

@@ -13,7 +13,7 @@ import Exceptions.ExceptionClass;
 import sistema.com.dao.DAOGeneric;
 import sistema.com.model.Pessoa;
 
-@ViewScoped  // Aqui não estou utilizando CDI para injeção pois estou fazendo mais manualmente
+@ViewScoped
 @ManagedBean(name="pessoaBean")
 public class PessoaBean implements Serializable{
 	

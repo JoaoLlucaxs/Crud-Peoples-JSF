@@ -7,37 +7,36 @@
 	
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<h:outputStylesheet library="style" name="estilocss.css"/>
 	<title>CADASTROS</title>
 </h:head>
 
 <h:body>
 	
-	<h:form id="frm" style="display:block;text-align:center; ">
-	<p:messages autoUpdate="true"/>
+	<h:form id="frm" style="display:block;text-align:center;">
+	<p:messages autoUpdate="true" closable="true"/>
 	
 		<h1>CRUD Cadastro de Pessoa</h1>
-		
 		
 		<p:outputLabel value="Id : "/>
 		<p:inputText value="#{pessoaBean.pessoa.id}" readonly="true"/>
 		<br/>
 		
-		<p:outputLabel value="Nome : "/>
-		<p:inputText value="#{pessoaBean.pessoa.nome}"/>
+		<p:outputLabel value="Nome : " for="nome"/>
+		<p:inputText value="#{pessoaBean.pessoa.nome}" id="nome" required="true"/>
 		<br/>
 		
-		<p:outputLabel value="Sobrenome : "/>
-		<p:inputText value="#{pessoaBean.pessoa.sobrenome}"/>
+		<p:outputLabel value="Sobrenome : " for="sobrenome"/>
+		<p:inputText value="#{pessoaBean.pessoa.sobrenome}" id="sobrenome" required="true"/>
 		<br/>
 		
-		<p:outputLabel value="Idade : "/>
-		<p:inputText value="#{pessoaBean.pessoa.idade}"/>
+		<p:outputLabel value="Idade : " for="idadeP"/>
+		<p:inputText value="#{pessoaBean.pessoa.idade}" id="idadeP" required="true"/>
 		<br/>
 		
 		<p:commandButton value="Salvar"  ajax="false" action="#{pessoaBean.salvar()}" style="background-color:green;"/>
 		
-		<p:dataTable var="p" value="#{pessoaBean.pessoas}" style="margin-top:10px;">
+		<p:dataTable var="p" value="#{pessoaBean.pessoas}" style="margin-top:10px;" emptyMessage="Nenhuma pessoa encontrada"
+		rows="20" paginator="true" paginatorAlwaysVisible="false" paginatorPosition="bottom">
 	
     	<p:column headerText="ID">
         	<h:outputText value="#{p.id}"/>
@@ -57,7 +56,7 @@
     	
     	
     	<p:column headerText="Edite">
-    		<p:commandButton value="EDITAR" action="#{pessoaBean.salvar()}" icon="ui-icon-pencil" update="@form" process="@this">
+ 			<p:commandButton value="EDITAR" action="#{pessoaBean.salvar()}" icon="ui-icon-pencil" update="@form" process="@this">
     			<f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
     		</p:commandButton>
     	</p:column>
@@ -65,13 +64,12 @@
     	<p:column headerText="Exclua">
     		<p:commandButton value="EXCLUIR" action="#{pessoaBean.delete()}" icon="ui-icon-trash" update="@form" process="@this">
     			<f:setPropertyActionListener value="#{p}" target="#{pessoaBean.pessoa}"/>
-    		</p:commandButton>
+    		</p:commandButton>	
     	</p:column>
     	
 	</p:dataTable>
 	
 	</h:form>
 	
-
 </h:body>
 </html>
