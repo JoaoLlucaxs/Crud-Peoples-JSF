@@ -6,22 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 import Exceptions.ExceptionClass;
 import sistema.com.dao.DAOGeneric;
 import sistema.com.model.Pessoa;
 
 @ViewScoped
-@ManagedBean(name="pessoaBean")
+@Named(value="pessoaBean")
 public class PessoaBean implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	
+	@Inject
 	private Pessoa pessoa=new Pessoa();
 	
+	@Inject
 	private DAOGeneric<Pessoa> daoPessoa=new DAOGeneric<Pessoa>();
 	
 	private List<Pessoa> pessoas=new ArrayList<Pessoa>();  // listando na tabela
