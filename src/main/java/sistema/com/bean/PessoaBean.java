@@ -27,8 +27,7 @@ public class PessoaBean implements Serializable{
 	private DAOGeneric<Pessoa> daoPessoa=new DAOGeneric<Pessoa>();
 	
 	private List<Pessoa> pessoas=new ArrayList<Pessoa>();  // listando na tabela
-	
-	@PostConstruct
+
 	public void salvar() {
 		try {
 		daoPessoa.merge(pessoa);
